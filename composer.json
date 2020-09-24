@@ -1,0 +1,24 @@
+{
+    "name": "nexagon/flow",
+    "description": "Nexagon Flow API sdk",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://nexagon.dk",
+    "authors": [
+        {
+            "name": "Magnus Meng Mortensen",
+            "email": "magnus@nexagon.dk"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.3.8"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
+}
