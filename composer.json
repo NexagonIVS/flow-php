@@ -1,6 +1,6 @@
 {
-    "name": "nexagon/flow",
-    "description": "Nexagon Flow API sdk",
+    "name": "nexagon/flow-php",
+    "description": "Nexagon Flow API library for php",
     "type": "library",
     "license": "MIT",
     "homepage": "https://nexagon.dk",
@@ -11,6 +11,7 @@
         }
     ],
     "require": {
+        "php": "^7.2",
         "guzzlehttp/guzzle": "^7.1.0",
       "ext-json": "*"
     },
