@@ -3,7 +3,7 @@
 The Flow PHP library provides convenient access to resources on the Nexagon Flow API for applications written in PHP.
 
 ## Requirements
-PHP 7.3 and later
+PHP 7.2 and later
 
 ## Manual installation
 If you do not wish to use composer, you can download the code from this repo.
