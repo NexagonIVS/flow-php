@@ -11,6 +11,9 @@ ehthumbs_vista.db
 # Folder config file
 [Dd]esktop.ini
 
+# PHPUnit test caches
+.phpunit.result.cache
+
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
