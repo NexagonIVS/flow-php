@@ -14,6 +14,7 @@ class FlowClientTestCase extends TestCase
     public function setUp(): void
     {
         $this->mock = new \GuzzleHttp\Handler\MockHandler();
+        // Mocked client: $this->client = new FlowClient('Fz6lVs1m.mU4z8kK9LMgY6iS2ejslQfdYcfdBQv11', 'http://localhost:8000/', $this->mock);
         $this->client = new FlowClient('Fz6lVs1m.mU4z8kK9LMgY6iS2ejslQfdYcfdBQv11', 'http://localhost:8000/');
     }
 
