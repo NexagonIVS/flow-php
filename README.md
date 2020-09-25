@@ -5,6 +5,16 @@ The Flow PHP library provides convenient access to resources on the Nexagon Flow
 ## Requirements
 PHP 7.2 and later
 
+## Composer
+You can install flow-php with composer. Run the following command:
+```bash
+composer require nexagon/flow-php
+```
+To use the library, use the autoloader from composer:
+```php
+require_once('vendor/autoload.php');
+```
+
 ## Manual installation
 If you do not wish to use composer, you can download the code from this repo.
 Then, to use the library, simply include the `init.php` file.
