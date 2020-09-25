@@ -14,7 +14,7 @@ class FlowClientTestCase extends TestCase
     public function setUp(): void
     {
         $this->mock = new \GuzzleHttp\Handler\MockHandler();
-        $this->client = new FlowClient('test-api-key', 'https://api-staging.nexagon.dk', $this->mock);
+        $this->client = new FlowClient('Fz6lVs1m.mU4z8kK9LMgY6iS2ejslQfdYcfdBQv11', 'http://localhost:8000/');
     }
 
     protected function addResponse($code = 200, $data = [])

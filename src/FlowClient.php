@@ -14,6 +14,9 @@ use Nexagon\Model;
 
  * @property Service\ProductService $products
  * @property Service\OrderService $orders
+ * @property Service\DataSchemaService $dataSchemas
+ * @property Service\DataSchemaVersionService $dataSchemaVersions
+ * @property Service\CustomerGroupService $customerGroups
  */
 final class FlowClient
 {
@@ -34,7 +37,7 @@ final class FlowClient
      * @param string $api_endpoint  api endpoint, defaults https://api.nexagon.dk
      * @param null $handler         Used for test purposes
      */
-    public function __construct(string $api_key, string $api_endpoint = 'https://api.nexagon.dk', $handler = null)
+    public function __construct(string $api_key, string $api_endpoint = 'https://api.nexagon.dk/', $handler = null)
     {
         $this->api_key = $api_key;
         $this->api_endpoint = $api_endpoint;
@@ -50,7 +53,7 @@ final class FlowClient
     private function _buildHttpClient(): Client
     {
         $handlerStack = null;
-        if ($this->client_handler) {
+        if (null !== $this->client_handler) {
             $handlerStack = new HandlerStack($this->client_handler);
         }
         $this->client = new Client([

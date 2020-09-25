@@ -4,7 +4,7 @@
 namespace Flow\Service;
 
 
-class OrderService extends AbstractService
+class CustomerGroupService extends AbstractService
 {
     use \Flow\ApiOperations\All;
     use \Flow\ApiOperations\Retrieve;
@@ -14,6 +14,6 @@ class OrderService extends AbstractService
 
     protected function getClassUrl(): string
     {
-        return "orders";
+        return "customer-groups";
     }
 }

@@ -6,6 +6,7 @@ use Flow\FlowException;
 use Flow\FlowClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractService
 {
@@ -41,22 +42,23 @@ abstract class AbstractService
         }
     }
 
-    private function _decode_response($response)
+    private function _decodeResponse(ResponseInterface $response)
     {
         if ($response->getStatusCode() > 299) {
             $fail_reason = $response->getStatusCode() < 500 ? $response->getBody()->getContents() : $response->getReasonPhrase();
             throw new FlowException($fail_reason, $response->getStatusCode());
         }
-        return json_decode($response->getBody()->getContents());
+        $body = json_decode($response->getBody()->getContents());
+        return [$body, $response];
     }
 
     protected function get($path, $params = [])
     {
         try {
             $response = $this->getClient()->get($this->_buildPath($path . '/', $params));
-            return $this->_decode_response($response);
+            return $this->_decodeResponse($response);
         } catch (GuzzleException $e) {
-            throw new FlowException('Could not get ' . $path, $e->getCode());
+            throw new FlowException('Could not get ' . $path . ': ' . $e->getCode(), $e->getCode());
         }
     }
 
@@ -64,11 +66,11 @@ abstract class AbstractService
     {
         try {
             $response = $this->getClient()->patch($this->_buildPath($path . '/', $params), [
-                "body" => json_encode($body)
+                "json" => $body
             ]);
-            return $this->_decode_response($response);
+            return $this->_decodeResponse($response);
         } catch (GuzzleException $e) {
-            throw new FlowException('Could not update ' . $path, $e->getCode());
+            throw new FlowException('Could not update ' . $path . ': ' . $e->getCode(), $e->getCode());
         }
     }
 
@@ -76,11 +78,21 @@ abstract class AbstractService
     {
         try {
             $response = $this->getClient()->post($this->_buildPath($path . '/', $params), [
-                "body" => json_encode($body)
+                "json" => $body
             ]);
-            return $this->_decode_response($response);
+            return $this->_decodeResponse($response);
         } catch (GuzzleException $e) {
-            throw new FlowException('Could not update ' . $path, $e->getCode());
+            throw new FlowException('Could not create ' . $path . ': ' . $e->getCode(), $e->getCode());
+        }
+    }
+
+    protected function del($path)
+    {
+        try {
+            $response = $this->getClient()->delete($this->_buildPath($path . '/'));
+            return $this->_decodeResponse($response);
+        } catch (GuzzleException $e) {
+            throw new FlowException('Could not get ' . $path . ': ' . $e->getCode(), $e->getCode());
         }
     }
 
