@@ -14,7 +14,8 @@ class CoreServiceFactory extends AbstractServiceFactory
         'orders' => OrderService::class,
         'customerGroups' => CustomerGroupService::class,
         'dataSchemas' => DataSchemaService::class,
-        'dataSchemaVersions' => DataSchemaVersionService::class
+        'dataSchemaVersions' => DataSchemaVersionService::class,
+        'files' => FileService::class
     ];
 
     protected function getServiceClass($name)

@@ -17,6 +17,7 @@ use Nexagon\Model;
  * @property Service\DataSchemaService $dataSchemas
  * @property Service\DataSchemaVersionService $dataSchemaVersions
  * @property Service\CustomerGroupService $customerGroups
+ * @property Service\FileService $files
  */
 final class FlowClient
 {

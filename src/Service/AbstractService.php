@@ -5,6 +5,7 @@ namespace Flow\Service;
 use Flow\FlowException;
 use Flow\FlowClient;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
@@ -81,6 +82,11 @@ abstract class AbstractService
                 "json" => $body
             ]);
             return $this->_decodeResponse($response);
+        } catch (ClientException $e) {
+            throw new FlowException(
+                'Could not create ' . $path . ': ' .
+                $e->getCode() . '. Error: ' .
+                $e->getResponse()->getBody()->getContents(), $e->getCode());
         } catch (GuzzleException $e) {
             throw new FlowException('Could not create ' . $path . ': ' . $e->getCode(), $e->getCode());
         }

@@ -7,20 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class OrderServiceTest extends FlowClientTestCase
 {
-
-    public function testShouldGetOrder(): void
-    {
-        $this->addResponse(200, [
-            "id" => 28,
-            "name" => "Test product",
-        ]);
-        [$data, $response] = $this->client->orders->retrieve(28);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertIsObject($data);
-        $this->assertObjectHasAttribute("id", $data);
-        $this->assertEquals(28, $data->id);
-    }
-
     public function testShouldGetAllOrders(): void
     {
         $this->addResponse(200, [
