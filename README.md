@@ -64,6 +64,42 @@ $flow->setApiEndpoint("http://sometest-endpoint.test");
 ```
 Remember to append a slash `/` at the end. Otherwise, requests may fail.
 
+### Uploading files and adding multiple file-versions
+Whenever you need to add a file to flow, it must first be created and uploaded before any resources can consume it.
+Use the following as a reference for uploading files to flow
+
+```php
+$flow = new Flow\FlowClient("api-key-goes-here");
+$stream = fopen("path/to/file.png", "r");
+$mimetype = mime_content_type("path/to/file.png");
+[$file,] = $flow->files->createAndUpload($stream, "file.png", $mimetype);
+
+// Consume the file on order lines or other resources
+$order_line_data = [
+    "files" => [$file->id],
+    ... // Any other required order line data - see documentation
+];
+[$order,] = $flow->orders->create([
+    "order_lines" => [$order_line_data]
+]);
+```
+
+If one needs to update a file, one must add a new version:
+```php
+$flow = new Flow\FlowClient("api-key-goes-here");
+$stream = ...;
+$name = ...;
+$mimetype = ...;
+[$file, ] = $flow->files->addFileVersion($stream, $name, $mimetype);
+
+// You have access to all version
+foreach ($file->versions as &$version) {
+    if ($version->latest) {
+        print_r("Im the latest version ($version->last_modified)! Download me here: $version->url");
+    }
+}
+```
+
 ## Documentation
 See the [Nexagon Flow documentation](https://docs.nexagon.dk).
 
