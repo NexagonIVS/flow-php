@@ -19,6 +19,13 @@ class OrderServiceTest extends FlowClientTestCase
         $this->assertObjectHasAttribute("results", $data);
         $this->assertObjectHasAttribute("count", $data);
         $this->assertObjectHasAttribute("next", $data);
+
+        [$data, $response] = $this->client->lines->all();
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertIsObject($data);
+        $this->assertObjectHasAttribute("results", $data);
+        $this->assertObjectHasAttribute("count", $data);
+        $this->assertObjectHasAttribute("next", $data);
     }
 
     public function testShouldCreateAndDeleteOrder(): void

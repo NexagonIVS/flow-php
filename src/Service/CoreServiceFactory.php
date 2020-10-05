@@ -12,6 +12,7 @@ class CoreServiceFactory extends AbstractServiceFactory
     private static $class_map = [
         'products' => ProductService::class,
         'orders' => OrderService::class,
+        'lines' => OrderLineService::class,
         'customerGroups' => CustomerGroupService::class,
         'dataSchemas' => DataSchemaService::class,
         'dataSchemaVersions' => DataSchemaVersionService::class,

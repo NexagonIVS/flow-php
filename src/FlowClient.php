@@ -14,6 +14,7 @@ use Nexagon\Model;
 
  * @property Service\ProductService $products
  * @property Service\OrderService $orders
+ * @property Service\OrderLineService $lines
  * @property Service\DataSchemaService $dataSchemas
  * @property Service\DataSchemaVersionService $dataSchemaVersions
  * @property Service\CustomerGroupService $customerGroups
