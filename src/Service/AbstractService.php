@@ -37,7 +37,7 @@ abstract class AbstractService
     private function _buildPath($path, $params = [])
     {
         if ($params and sizeof($params) > 0) {
-            return $path . http_build_query($params);
+            return $path . '?' . http_build_query($params);
         } else {
             return $path;
         }
