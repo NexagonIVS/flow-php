@@ -75,6 +75,18 @@ abstract class AbstractService
         }
     }
 
+    protected function put($path, $params, $body)
+    {
+        try {
+            $response = $this->getClient()->put($this->_buildPath($path . '/', $params), [
+                "json" => $body
+            ]);
+            return $this->_decodeResponse($response);
+        } catch (GuzzleException $e) {
+            throw new FlowException('Could not update ' . $path . ': ' . $e->getCode(), $e->getCode());
+        }
+    }
+
     protected function post($path, $params, $body)
     {
         try {

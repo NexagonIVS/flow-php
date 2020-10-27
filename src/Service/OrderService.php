@@ -16,4 +16,13 @@ class OrderService extends AbstractService
     {
         return "orders";
     }
+
+    /**
+     * @param string|integer $id    the id of the order
+     * @return array                [$data, $response]
+     */
+    public function startProduction($id)
+    {
+        return $this->put($this->getClassUrl() . '/' . $id . '/start_production', [], null);
+    }
 }
