@@ -5,8 +5,6 @@ namespace Flow;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;
-use Flow\FlowException;
-use Nexagon\Model;
 
 /**
  * Class FlowClient
@@ -19,6 +17,7 @@ use Nexagon\Model;
  * @property Service\DataSchemaVersionService $dataSchemaVersions
  * @property Service\CustomerGroupService $customerGroups
  * @property Service\FileService $files
+ * @property Service\HookService $hooks
  */
 final class FlowClient
 {
