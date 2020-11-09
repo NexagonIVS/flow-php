@@ -67,25 +67,8 @@ class FileService extends AbstractService
 
     private function uploadFile($fileResponseData, $stream, $mimetype)
     {
-        // Build the file data with a content-type to be S3 compatible.
-        $multipartData = [
-            [
-                "name" => "file",
-                "contents" => $stream,
-            ],
-            [
-                "name" => "Content-Type",
-                "contents" => $mimetype,
-            ]
-        ];
-        foreach ($fileResponseData->post_info->fields as $key => $value) {
-            array_push($multipartData, [
-                "name" => $key,
-                "contents" => $value,
-            ]);
-        }
         $this->getClient()->request('PUT', $fileResponseData->post_info->url, [
-            "multipart" => $multipartData,
+            "body" => $stream,
             "headers" => [
                 "Content-Type" => $mimetype
             ],

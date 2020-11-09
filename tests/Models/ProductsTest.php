@@ -47,4 +47,15 @@ final class ProductsTest extends FlowClientTestCase
         $this->assertIsObject($data);
         $this->assertEquals("new name", $data->name);
     }
+
+    public function testShouldAddFileToProduct(): void
+    {
+        $stream = fopen(__DIR__ . "/favicon.png", "r");
+        $mimetype = mime_content_type(__DIR__ . "/favicon.png");
+        $this->assertIsResource($stream);
+        [$file,] = $this->client->files->createAndUpload($stream, "favicon.png", $mimetype);
+        [$data,] = $this->client->products->addFile(1449, $file->id);
+        [$prod,] = $this->client->products->retrieve(1449);
+        $this->assertEquals(sizeof($prod->files), 4);
+    }
 }
