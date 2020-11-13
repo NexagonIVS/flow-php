@@ -35,10 +35,10 @@ final class FlowClient
     /**
      * FlowClient constructor.
      * @param string $api_key       api key to use for authentication
-     * @param string $api_endpoint  api endpoint, defaults https://api.nexagon.dk
+     * @param string $api_endpoint  api endpoint, defaults https://api.nexagon-flow.com
      * @param null $handler         Used for test purposes
      */
-    public function __construct(string $api_key, string $api_endpoint = 'https://api.nexagon.dk/', $handler = null)
+    public function __construct(string $api_key, string $api_endpoint = 'https://api.nexagon-flow.com/', $handler = null)
     {
         $this->api_key = $api_key;
         $this->api_endpoint = $api_endpoint;
